@@ -37,10 +37,14 @@ blogRouter.delete('/:id', async (request, response) => {
 })
 
 blogRouter.put('/:id', async (request, response) => {
-  if(!request.body.likes) 
+  console.log(request.body)
+  if(request.body.likes === undefined) 
     throw Error('likes not found')
 
-  const result = await Blog.findByIdAndUpdate(request.params.id, {likes: request.body.likes}, {new: true})  
+  const result = await Blog
+    .findByIdAndUpdate(request.params.id, {likes: request.body.likes + 1}, {new: true})
+    .populate('user', {blogs: 0})
+
   if(!result) 
     throw new Error('resource not found')
   else

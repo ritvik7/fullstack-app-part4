@@ -22,7 +22,8 @@
     "lodash.groupby": "^4.6.0",
     "lodash.keys": "^4.2.0",
     "lodash.maxby": "^4.6.0",
-    "mongoose": "^5.9.24"
+    "mongoose": "^5.9.24",
+    "mongoose-unique-validator": "^2.0.3"
   },
   "devDependencies": {
     "eslint": "^7.6.0",
