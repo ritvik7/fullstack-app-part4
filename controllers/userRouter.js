@@ -7,9 +7,9 @@ userRouter.post('/', async (request, response) => {
   if(!body.password || !body.username)
     throw Error('InvalidCreds')
 
-  if (body.password.length < 3 || body.username.length < 3) 
+  if (body.password.length < 3 || body.username.length < 3)
     throw Error('ShortCreds')
-  
+
   const saltRounds = 10
   const user = new User({
     username: body.username,
@@ -21,13 +21,13 @@ userRouter.post('/', async (request, response) => {
 })
 
 userRouter.get('/', async (request, response) => {
-  const users = await User.find({}).populate('blogs', {user: 0})
+  const users = await User.find({}).populate('blogs', { user: 0 })
   response.status(200).json(users)
 })
 
 userRouter.delete('/:id', async (request, response) => {
   const result = await User.findByIdAndRemove(request.params.id)
-  if(!result) 
+  if(!result)
     throw Error('id not found')
   else
     response.status(204).end()

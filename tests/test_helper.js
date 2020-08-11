@@ -59,8 +59,8 @@ const newUserToken = async () => {
 }
 
 const usersBlogsInDb = async () => {
-  const user = await User.findOne({username: 'test_user'})
+  const user = await User.findOne({ username: 'test_user' })
   return user.blogs
 }
 
-module.exports = {blogsInDb, initialBlogs, usersInDb, newUserToken, usersBlogsInDb}
+module.exports = { blogsInDb, initialBlogs, usersInDb, newUserToken, usersBlogsInDb }

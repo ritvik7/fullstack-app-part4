@@ -75,8 +75,8 @@ describe('favourite blog', () => {
   test('when only one blog in list returns that blog', () => {
     const blogs = [blog_list[0]]
     const result = list_helper.favoriteBlog(blogs)
-    let {title, author, likes} = blogs[0]
-    expect(result).toEqual({title, author, likes})
+    let { title, author, likes } = blogs[0]
+    expect(result).toEqual({ title, author, likes })
   })
 
   test('of empty list returns null', () => {
@@ -88,8 +88,8 @@ describe('favourite blog', () => {
   test('of bigger list returns blog with most likes', () => {
     const blogs = blog_list
     const result = list_helper.favoriteBlog(blogs)
-    let {title, author, likes} = blogs[2]
-    expect(result).toEqual({title, author, likes})
+    let { title, author, likes } = blogs[2]
+    expect(result).toEqual({ title, author, likes })
   })
 })
 
@@ -97,7 +97,7 @@ describe('most blogs', () => {
   test('in list returns any one author with most blogs', () => {
     const blogs = blog_list
     const result = list_helper.mostBlogs(blogs)
-    expect(result).toEqual({author: 'Robert C. Martin', blogs: 3})
+    expect(result).toEqual({ author: 'Robert C. Martin', blogs: 3 })
   })
 
   test('of empty list returns null', () => {
@@ -109,7 +109,7 @@ describe('most blogs', () => {
   test('when list has only one blog returns the author of that blog with 1 as count', () => {
     const blogs = [blog_list[0]]
     const result = list_helper.mostBlogs(blogs)
-    expect(result).toEqual({author: blog_list[0].author, blogs: 1})
+    expect(result).toEqual({ author: blog_list[0].author, blogs: 1 })
   })
 })
 
@@ -117,7 +117,7 @@ describe('most likes', () => {
   test('in list returns any one author with most likes', () => {
     const blogs = blog_list
     const result = list_helper.mostLikes(blogs)
-    expect(result).toEqual({author: 'Edsger W. Dijkstra', likes: 17})
+    expect(result).toEqual({ author: 'Edsger W. Dijkstra', likes: 17 })
   })
 
   test('of empty list returns null', () => {
@@ -125,11 +125,11 @@ describe('most likes', () => {
     const result = list_helper.mostLikes(blogs)
     expect(result).toEqual(null)
   })
-  
+
   test('when list has only one blog returns the author of that blog with 1 as count', () => {
     const blogs = [blog_list[0]]
-    let {author, likes} = blogs[0]
+    let { author, likes } = blogs[0]
     const result = list_helper.mostLikes(blogs)
-    expect(result).toEqual({author, likes})
+    expect(result).toEqual({ author, likes })
   })
 })

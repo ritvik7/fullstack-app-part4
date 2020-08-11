@@ -3,7 +3,7 @@ const helper = require('./test_helper')
 const Blog = require('../models/blog')
 const User = require('../models/user')
 const supertest = require('supertest')
-const app = require('../app') 
+const app = require('../app')
 const api = supertest(app)
 let token = ''
 
@@ -13,7 +13,7 @@ beforeEach(async () => {
     blog = new Blog(blog)
     await blog.save()
   }
-  await User.deleteMany({username: 'test_user'})
+  await User.deleteMany({ username: 'test_user' })
   token = await helper.newUserToken()
 })
 
@@ -49,10 +49,10 @@ test('blogs are addded correctly', async () => {
     .set('Authorization', `Bearer ${token}`)
     .expect(201)
     .expect('Content-Type', /application\/json/)
-    
+
   const blogsAtEnd = await helper.blogsInDb()
   const usersBlogsAtEnd = await helper.usersBlogsInDb()
-  
+
   expect(blogsAtEnd).toHaveLength(blogsAtStart.length + 1)
   expect(blogsAtEnd.map(blog => blog.id)).toContain(result.body.id)
 
@@ -76,7 +76,7 @@ test('blog is not added if token is not provided', async () => {
     .expect(401)
 
   const blogsAtEnd = await helper.blogsInDb()
-  
+
   expect(blogsAtEnd).toHaveLength(blogsAtStart.length)
   expect(blogsAtEnd.map(blog => blog.title)).not.toContain(blog.title)
 })

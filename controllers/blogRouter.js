@@ -4,7 +4,7 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 
 blogRouter.get('/', async (request, response) => {
-  const blogs = await Blog.find({}).populate('user', {blogs: 0})
+  const blogs = await Blog.find({}).populate('user', { blogs: 0 })
   response.json(blogs)
 })
 
@@ -18,7 +18,7 @@ blogRouter.post('/', async (request, response) => {
   let result = await blog.save()
   user.blogs = user.blogs.concat(result.id)
   await user.save()
-  result = result.populate('user', {blogs: 0})
+  result = result.populate('user', { blogs: 0 })
   response.status(201).json(result)
 })
 
@@ -38,14 +38,14 @@ blogRouter.delete('/:id', async (request, response) => {
 
 blogRouter.put('/:id', async (request, response) => {
   console.log(request.body)
-  if(request.body.likes === undefined) 
+  if(request.body.likes === undefined)
     throw Error('likes not found')
 
   const result = await Blog
-    .findByIdAndUpdate(request.params.id, {likes: request.body.likes + 1}, {new: true})
-    .populate('user', {blogs: 0})
+    .findByIdAndUpdate(request.params.id, { likes: request.body.likes + 1 }, { new: true })
+    .populate('user', { blogs: 0 })
 
-  if(!result) 
+  if(!result)
     throw new Error('resource not found')
   else
     response.status(201).json(result)

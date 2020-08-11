@@ -3,19 +3,19 @@ const logger = require('./logger')
 const errorHandler = (error, request, response, next) => {
   logger.error(error)
   if (error.name === 'ValidationError') {
-    return response.status(400).send({error: error.message})
+    return response.status(400).send({ error: error.message })
   } else if (error.name === 'CastError') {
-    return response.status(400).send({error: 'malformatted id'})
+    return response.status(400).send({ error: 'malformatted id' })
   } else if (error.message === 'resource not found') {
-    return response.status(404).send({error: error.message})
+    return response.status(404).send({ error: error.message })
   } else if (error.message === 'likes not found') {
-    return response.status(400).send({error: error.message})
+    return response.status(400).send({ error: error.message })
   } else if(error.message === 'ShortCreds') {
-    return response.status(400).send({error: 'username and password should be 3 or more characters long'})
+    return response.status(400).send({ error: 'username and password should be 3 or more characters long' })
   } else if(error.message === 'InvalidCreds') {
-    return response.status(400).send({error: 'username or password missing'})
+    return response.status(400).send({ error: 'username or password missing' })
   } else if(error.message === 'UserNotAuthorized' || ['SyntaxError','JsonWebTokenError'].indexOf(error.name) !== -1) {
-    return response.status(401).send({error: 'authorization failed'})
+    return response.status(401).send({ error: 'authorization failed' })
   }
 
   next(error)
@@ -39,8 +39,8 @@ const tokenExtractor = (request, response, next) => {
     request.token = authorization.substr(7)
   }
   next()
-} 
+}
 
-module.exports = {reqLogger, unknownEndpoint, errorHandler, tokenExtractor}
+module.exports = { reqLogger, unknownEndpoint, errorHandler, tokenExtractor }
 
 

@@ -30,7 +30,7 @@ describe('invalid users', () => {
     expect(result.body.error).toContain('`username` to be unique')
 
   })
-  
+
   test('username or password shorter than 3 characters returns error', async () => {
     const usersAtStart = await helper.usersInDb()
     const user = {
@@ -42,13 +42,13 @@ describe('invalid users', () => {
       .post('/api/users')
       .send(user)
       .expect(400)
-    
+
     expect(result.body.error).toBe('username and password should be 3 or more characters long')
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toHaveLength(usersAtStart.length)
     expect(usersAtEnd.map(user => user.username)).not.toContain('fu')
   })
-  
+
   test('missing username or password returns error', async () => {
     const usersAtStart = await helper.usersInDb()
     const user = {
@@ -59,7 +59,7 @@ describe('invalid users', () => {
       .post('/api/users')
       .send(user)
       .expect(400)
-    
+
     expect(result.body.error).toBe('username or password missing')
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toHaveLength(usersAtStart.length)
