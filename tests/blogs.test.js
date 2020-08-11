@@ -46,7 +46,7 @@ const blog_list = [{
 
 
 test('dummy returns one', () => {
-  blogs = []
+  const blogs = []
   const result = list_helper.dummy(blogs)
   expect(result).toBe(1)
 })

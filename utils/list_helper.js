@@ -30,7 +30,7 @@ const mostLikes = (blogs) => {
   const likeCounts = groupBy(blogs, 'author')
   const authors = keys(likeCounts)
   const result = authors.map(author => {
-    likes = likeCounts[author].reduce((sum, blog) => sum + blog.likes, 0)
+    const likes = likeCounts[author].reduce((sum, blog) => sum + blog.likes, 0)
     return {'author': author, 'likes': likes}
   })
   return maxBy(result, 'likes')

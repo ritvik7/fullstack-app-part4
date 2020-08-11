@@ -17,14 +17,11 @@ beforeEach(async () => {
 
 describe('invalid users', () => {
   test('username should be unique', async () => {
-    const usersAtStart = await helper.usersInDb()
-    
     const user = {
       username: 'bebop',
       name: 'Faye',
       password: 'jam'
     }
-
     const result = await api
       .post('/api/users')
       .send(user)
